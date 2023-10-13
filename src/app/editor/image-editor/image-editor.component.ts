@@ -6,11 +6,12 @@ import { ImageUploadComponent } from '../image-upload/image-upload.component';
 import { ImageEditorService } from 'src/app/services/image.service';
 import { ImageEditorStoreService } from 'src/app/custom-store/image-editor-store/image-editor-store.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { ImageTooltipDirective } from 'src/app/directives/image-tooltip.directive';
 
 @Component({
   selector: 'app-image-editor',
   standalone: true,
-  imports: [CommonModule, ImageToolbarComponent, ImageUploadComponent, MatProgressSpinnerModule],
+  imports: [CommonModule, ImageToolbarComponent, ImageUploadComponent, MatProgressSpinnerModule, ImageTooltipDirective],
   providers: [ImageEditorService],
   templateUrl: './image-editor.component.html',
   styleUrls: ['./image-editor.component.scss'],

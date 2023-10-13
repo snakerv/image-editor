@@ -8,6 +8,7 @@ export interface ImageEditorState {
   imageStyles: { [key: string]: string };
   currentRotationAngle: number;
   isMouseDown: boolean;
+  appliedFilters: string[];
 }
 
 const initialState: ImageEditorState = {
@@ -17,6 +18,7 @@ const initialState: ImageEditorState = {
   imageStyles: {},
   currentRotationAngle: 0,
   isMouseDown: false,
+  appliedFilters: []
 };
 
 @Injectable()
