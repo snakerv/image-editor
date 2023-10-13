@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+.editor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.toolbar {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+
+.image-box {
+  margin-bottom: 20px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.main-edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+
+//spinner
+
+.overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+}
+
+//upload
+
+.upload-container {
+  display: flex;
+}

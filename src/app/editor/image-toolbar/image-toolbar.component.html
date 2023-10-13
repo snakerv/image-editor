@@ -1,0 +1,11 @@
+<div class="toolbar">
+  <button mat-raised-button color="primary" (click)="action.emit('zoomIn')">Zoom In</button>
+  <button mat-raised-button color="primary" (click)="action.emit('zoomOut')">Zoom Out</button>
+  <button mat-raised-button color="accent" (click)="action.emit('rotateRight')">Rotate right</button>
+  <button mat-raised-button color="accent" (click)="action.emit('rotateLeft')">Rotate left</button>
+  <button mat-raised-button (click)="action.emit('toBlackAndWhite')">Black and White</button>
+  <button mat-raised-button color="warn" (click)="action.emit('undo')">Undo</button>
+  <button mat-icon-button color="primary" (click)="onBackClicked()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>

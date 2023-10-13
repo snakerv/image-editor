@@ -1,0 +1,4 @@
+<div class="upload-container">
+  <input type="file" #fileInput style="display:none;" accept="image/*" (change)="uploadImage($event)">
+  <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Image</button>
+</div>
