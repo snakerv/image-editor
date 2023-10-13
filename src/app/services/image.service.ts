@@ -42,6 +42,16 @@ export class ImageEditorService {
         newImageStyles = {};
         newImageCrop = { x: 0, y: 0, scale: 1 };
         break;
+      case 'increaseContrast':
+        newImageStyles['filter'] = 'contrast(150%)';
+        break;
+      case 'blur':
+        newImageStyles['filter'] = 'blur(4px)';
+        break;
+      case 'psychedelic':
+        const hue = Math.floor(Math.random() * 360);
+        newImageStyles['filter'] = `hue-rotate(${hue}deg)`;
+        break;
     }
 
     this.store.setState({

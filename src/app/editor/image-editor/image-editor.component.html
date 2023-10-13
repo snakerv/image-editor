@@ -1,30 +1,14 @@
 <div *ngIf="!isEditing; else editorTemplate">
   <div class="main-edit">
+    <img src="assets/rosemood-logo.png" alt="Logo" />
     <h1>Edit your image</h1>
     <app-image-upload (imageUploaded)="onImageUploaded($event)" ></app-image-upload>
   </div>
 </div>
 
 <ng-template #editorTemplate>
-  <!-- <div class="editor-container">
-    <h1>Edit {{imageName}}</h1>
-    <div class="image-wrapper">
-    <div class="image-box"
-      [style.width.px]="imageDimensions.width"
-      [style.height.px]="imageDimensions.height"
-      [style.backgroundImage]="'url(' + image + ')'"
-      [style.backgroundSize]="imageCrop.scale * 100 + '%'"
-      [style.backgroundPosition]="imageCrop.x + 'px ' + imageCrop.y + 'px'"
-      [ngStyle]="imageStyles"
-      (mousemove)="panImage($event)"
-      (mousedown)="activatePanMode()"
-      (mouseup)="deactivatePanMode()">
-    </div>
-    </div>
-    <app-image-toolbar (action)="performAction($event)" (backClicked)="onBackClicked()"></app-image-toolbar>
-  </div> -->
   <div class="editor-container">
-    <h1>Edit {{imageName}}</h1>
+    <h1 style="z-index: 1;">Edit {{imageName}}</h1>
     <div class="image-wrapper">
       <div class="image-box"
         [style.width.px]="imageDimensions.width"
@@ -40,7 +24,6 @@
     </div>
     <app-image-toolbar (action)="performAction($event)" (backClicked)="onBackClicked()"></app-image-toolbar>
 </div>
-
 </ng-template>
 
 

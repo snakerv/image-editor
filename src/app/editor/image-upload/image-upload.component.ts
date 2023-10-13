@@ -17,6 +17,10 @@ export class ImageUploadComponent {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
+      if (!file.type.startsWith('image/')) {
+        alert("Only image files are allowed.");
+        return;
+      }
       const reader = new FileReader();
       reader.onload = () => {
         const imageInfo = {
