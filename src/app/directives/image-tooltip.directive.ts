@@ -13,7 +13,7 @@ export class ImageTooltipDirective {
     private el: ElementRef,
     private renderer: Renderer2,
     private store: ImageEditorStoreService
-  ) {}
+  ) { }
 
   @HostListener('mouseenter') onMouseEnter() {
     this.tooltipElement = this.renderer.createElement('span');
@@ -26,15 +26,15 @@ export class ImageTooltipDirective {
       this.renderer.appendChild(this.tooltipElement, filterText);
     }
 
-    this.renderer.setStyle(this.tooltipElement, 'position', 'absolute');
     this.renderer.setStyle(this.tooltipElement, 'background-color', '#333');
     this.renderer.setStyle(this.tooltipElement, 'color', 'white');
     this.renderer.setStyle(this.tooltipElement, 'padding', '5px');
-    this.renderer.appendChild(this.el.nativeElement, this.tooltipElement);
+
+    this.renderer.appendChild(this.el.nativeElement.nextSibling, this.tooltipElement);
   }
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.renderer.removeChild(this.el.nativeElement, this.tooltipElement);
+    this.renderer.removeChild(this.el.nativeElement.nextSibling, this.tooltipElement);
   }
 
   private getAppliedFilters(): string[] {

@@ -5,7 +5,7 @@ import { ImageEditorStoreService } from '../custom-store/image-editor-store/imag
   providedIn: 'root',
 })
 export class ImageEditorService {
-  constructor(private store: ImageEditorStoreService) {}
+  constructor(private store: ImageEditorStoreService) { }
 
   setImage(imageData: string) {
     this.store.setState({
@@ -24,26 +24,26 @@ export class ImageEditorService {
     switch (action) {
       case 'zoomIn':
         newImageCrop.scale += 0.1;
+        console.log('Zoom In:', newImageCrop.scale);
         if (!newAppliedFilters.includes('Zoom In')) {
           newAppliedFilters.push('Zoom In');
         }
         break;
       case 'zoomOut':
-        newImageCrop.scale = Math.max(newImageCrop.scale - 0.1, 1);
-        if (!newAppliedFilters.includes('Zoom out')) {
-          newAppliedFilters.push('Zoom out');
+        newImageCrop.scale -= 0.1;
+        console.log('Zoom Out:', newImageCrop.scale);
+        if (!newAppliedFilters.includes('Zoom Out')) {
+          newAppliedFilters.push('Zoom Out');
         }
         break;
       case 'rotateRight':
         newRotationAngle += 90;
-        newImageStyles['transform'] = `rotate(${newRotationAngle}deg)`;
         if (!newAppliedFilters.includes('Rotate right')) {
           newAppliedFilters.push('Rotate right');
         }
         break;
       case 'rotateLeft':
         newRotationAngle -= 90;
-        newImageStyles['transform'] = `rotate(${newRotationAngle}deg)`;
         if (!newAppliedFilters.includes('Rotate left')) {
           newAppliedFilters.push('Rotate left');
         }
@@ -85,6 +85,8 @@ export class ImageEditorService {
         }
         break;
     }
+
+    newImageStyles['transform'] = `scale(${newImageCrop.scale}) rotate(${newRotationAngle}deg)`;
 
     this.store.setState({
       imageCrop: newImageCrop,

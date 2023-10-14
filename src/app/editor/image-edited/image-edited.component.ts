@@ -15,9 +15,20 @@ export class ImageEditedComponent {
   @Input() imageCrop = { x: 0, y: 0, scale: 1 };
   @Input({ required: true }) imageDimensions: { width: number, height: number } = { width: 0, height: 0 };
   @Input() imageName?: string;
+  @Input() currentRotationAngle: number = 0;
+
 
   @Output() panImage = new EventEmitter<MouseEvent>();
   @Output() activatePanMode = new EventEmitter<void>();
   @Output() deactivatePanMode = new EventEmitter<void>();
+
+  getMergedStyles(): { [key: string]: string } {
+    return {
+      ...this.imageStyles,
+      'transform': `scale(${this.imageCrop.scale}) rotate(${this.currentRotationAngle}deg)`,
+      'transform-origin': 'center center'
+    };
+  }
+
 
 }

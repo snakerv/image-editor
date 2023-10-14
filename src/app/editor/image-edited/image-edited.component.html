@@ -1,13 +1,42 @@
-<div class="image-box"
+<!-- <div
+  class="image-container"
   appImageTooltip
   [imageName]="imageName"
   [style.width.px]="imageDimensions.width"
   [style.height.px]="imageDimensions.height"
-  [style.backgroundImage]="'url(' + image + ')'"
-  [style.backgroundSize]="imageCrop.scale * 100 + '%'"
-  [style.backgroundPosition]="imageCrop.x + 'px ' + imageCrop.y + 'px'"
-  [ngStyle]="imageStyles"
   (mousemove)="panImage.emit($event)"
   (mousedown)="activatePanMode.emit()"
-  (mouseup)="deactivatePanMode.emit()">
+  (mouseup)="deactivatePanMode.emit()"
+>
+  <img
+    [src]="image"
+    [style.objectFit]="'cover'"
+    [style.objectPosition]="imageCrop.x + 'px ' + imageCrop.y + 'px'"
+    [style.width.px]="imageDimensions.width"
+    [style.height.px]="imageDimensions.height"
+    [ngStyle]="getMergedStyles()"
+  />
+</div> -->
+
+<div class="image-and-tooltip-container">
+  <div
+    class="image-container"
+    appImageTooltip
+    [imageName]="imageName"
+    [style.width.px]="imageDimensions.width"
+    [style.height.px]="imageDimensions.height"
+    (mousemove)="panImage.emit($event)"
+    (mousedown)="activatePanMode.emit()"
+    (mouseup)="deactivatePanMode.emit()"
+  >
+    <img
+      [src]="image"
+      [style.objectFit]="'cover'"
+      [style.objectPosition]="imageCrop.x + 'px ' + imageCrop.y + 'px'"
+      [style.width.px]="imageDimensions.width"
+      [style.height.px]="imageDimensions.height"
+      [ngStyle]="getMergedStyles()"
+    />
+  </div>
+  <div id="tooltip-container"></div>
 </div>
