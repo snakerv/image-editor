@@ -10,19 +10,16 @@
   <div class="editor-container">
     <h1 style="z-index: 1;">Edit {{imageName}}</h1>
     <div class="image-wrapper">
-      <div class="image-box"
-        appImageTooltip
+      <app-image-edited
+        [imageStyles]="imageStyles"
+        [image]="image"
+        [imageCrop]="imageCrop"
+        [imageDimensions]="imageDimensions"
         [imageName]="imageName"
-        [style.width.px]="imageDimensions.width"
-        [style.height.px]="imageDimensions.height"
-        [style.backgroundImage]="'url(' + image + ')'"
-        [style.backgroundSize]="imageCrop.scale * 100 + '%'"
-        [style.backgroundPosition]="imageCrop.x + 'px ' + imageCrop.y + 'px'"
-        [ngStyle]="imageStyles"
-        (mousemove)="panImage($event)"
-        (mousedown)="activatePanMode()"
-        (mouseup)="deactivatePanMode()">
-      </div>
+        (panImage)="panImage($event)"
+        (activatePanMode)="activatePanMode()"
+        (deactivatePanMode)="deactivatePanMode()"
+      ></app-image-edited>
     </div>
     <app-image-toolbar (action)="performAction($event)" (backClicked)="onBackClicked()"></app-image-toolbar>
 </div>
