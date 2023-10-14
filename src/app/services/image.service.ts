@@ -24,14 +24,12 @@ export class ImageEditorService {
     switch (action) {
       case 'zoomIn':
         newImageCrop.scale += 0.1;
-        console.log('Zoom In:', newImageCrop.scale);
         if (!newAppliedFilters.includes('Zoom In')) {
           newAppliedFilters.push('Zoom In');
         }
         break;
       case 'zoomOut':
         newImageCrop.scale -= 0.1;
-        console.log('Zoom Out:', newImageCrop.scale);
         if (!newAppliedFilters.includes('Zoom Out')) {
           newAppliedFilters.push('Zoom Out');
         }
