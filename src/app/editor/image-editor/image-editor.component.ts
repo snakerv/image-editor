@@ -59,7 +59,7 @@ export class ImageEditorComponent implements OnDestroy {
     img.src = imageInfo.data;
   }
 
-  loading() {
+  loading(): boolean {
     return this.isLoading();
   }
 

@@ -55,6 +55,7 @@ export class ImageEditorService {
       case 'undo':
         newImageStyles = {};
         newImageCrop = { x: 0, y: 0, scale: 1 };
+        newRotationAngle = 0;
         newAppliedFilters = [];
         this.store.setState({
           imageCrop: newImageCrop,
@@ -63,6 +64,7 @@ export class ImageEditorService {
           appliedFilters: newAppliedFilters
         });
         break;
+
       case 'increaseContrast':
         newImageStyles['filter'] = 'contrast(150%)';
         if (!newAppliedFilters.includes('Contrast')) {
