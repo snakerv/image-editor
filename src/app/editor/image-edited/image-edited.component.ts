@@ -10,10 +10,10 @@ import { ImageTooltipDirective } from 'src/app/directives/image-tooltip.directiv
 })
 export class ImageEditedComponent {
 
-  @Input() imageStyles: { [key: string]: string } = {};
+  @Input({ required: true }) imageStyles: { [key: string]: string } = {};
   @Input() image: string | null = null;
   @Input() imageCrop = { x: 0, y: 0, scale: 1 };
-  @Input() imageDimensions: { width: number, height: number } = { width: 0, height: 0 };
+  @Input({ required: true }) imageDimensions: { width: number, height: number } = { width: 0, height: 0 };
   @Input() imageName?: string;
 
   @Output() panImage = new EventEmitter<MouseEvent>();
