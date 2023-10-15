@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageTooltipDirective } from 'src/app/directives/image-tooltip.directive';
+import { ImageCrop, ImageDimensions } from 'src/app/common/interfaces/image-editor.interfaces';
 
 @Component({
   selector: 'app-image-edited',
@@ -12,11 +13,10 @@ export class ImageEditedComponent {
 
   @Input({ required: true }) imageStyles: { [key: string]: string } = {};
   @Input() image: string | null = null;
-  @Input() imageCrop = { x: 0, y: 0, scale: 1 };
-  @Input({ required: true }) imageDimensions: { width: number, height: number } = { width: 0, height: 0 };
+  @Input() imageCrop: ImageCrop = { x: 0, y: 0, scale: 1 };
+  @Input({ required: true }) imageDimensions: ImageDimensions = { width: 0, height: 0 };
   @Input() imageName?: string;
   @Input() currentRotationAngle: number = 0;
-
 
   @Output() panImage = new EventEmitter<MouseEvent>();
   @Output() activatePanMode = new EventEmitter<void>();

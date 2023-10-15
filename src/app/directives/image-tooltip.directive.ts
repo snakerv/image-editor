@@ -16,6 +16,14 @@ export class ImageTooltipDirective {
   ) { }
 
   @HostListener('mouseenter') onMouseEnter() {
+    this.createTooltip();
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.removeTooltip();
+  }
+
+  private createTooltip() {
     this.tooltipElement = this.renderer.createElement('span');
     const text = this.renderer.createText(`Nom de l'image : ${this.imageName}`);
     this.renderer.appendChild(this.tooltipElement, text);
@@ -33,8 +41,10 @@ export class ImageTooltipDirective {
     this.renderer.appendChild(this.el.nativeElement.nextSibling, this.tooltipElement);
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
-    this.renderer.removeChild(this.el.nativeElement.nextSibling, this.tooltipElement);
+  private removeTooltip() {
+    if (this.tooltipElement) {
+      this.renderer.removeChild(this.el.nativeElement.nextSibling, this.tooltipElement);
+    }
   }
 
   private getAppliedFilters(): string[] {

@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-export interface ImageEditorState {
-  image: string | null;
-  isImageLoaded: boolean;
-  imageCrop: { x: number, y: number, scale: number };
-  imageStyles: { [key: string]: string };
-  currentRotationAngle: number;
-  isMouseDown: boolean;
-  appliedFilters: string[];
-}
+import { ImageEditorState } from 'src/app/common/interfaces/image-editor.interfaces';
 
 const initialState: ImageEditorState = {
   image: null,
