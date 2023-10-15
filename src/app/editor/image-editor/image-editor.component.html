@@ -25,6 +25,11 @@
       ></app-image-edited>
     </div>
     <app-image-toolbar
+      [image]="image"
+      [imageStyles]="imageStyles"
+      [imageCrop]="imageCrop"
+      [imageName]="imageName"
+      [currentRotationAngle]="currentRotationAngle"
       (action)="performAction($event)"
       (backClicked)="onBackClicked()"
     ></app-image-toolbar>

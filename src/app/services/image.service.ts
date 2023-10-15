@@ -108,5 +108,34 @@ export class ImageEditorService {
     });
   }
 
+  downloadImage(imageData: string, imageStyles: any, imageCrop: any, currentRotationAngle: number, title: string) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = imageData;
+
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      if (!ctx) {
+        alert("Le contexte du canvas n'a pas pu être récupéré.");
+        return;
+      }
+
+      ctx.filter = imageStyles['filter'] || 'none';
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate((currentRotationAngle * Math.PI) / 180);
+      ctx.scale(imageCrop.scale, imageCrop.scale);
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+
+      const url = canvas.toDataURL();
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = title;
+      a.click();
+    };
+  }
+
 }
 
