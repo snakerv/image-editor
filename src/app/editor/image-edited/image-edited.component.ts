@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageTooltipDirective } from 'src/app/directives/image-tooltip.directive';
-import { ImageCrop, ImageDimensions } from 'src/app/common/interfaces/image-editor.interfaces';
+import { ImageCrop, ImageDimensions, imageStyleKey } from 'src/app/common/interfaces/image-editor.interfaces';
 
 @Component({
   selector: 'app-image-edited',
@@ -11,7 +11,7 @@ import { ImageCrop, ImageDimensions } from 'src/app/common/interfaces/image-edit
 })
 export class ImageEditedComponent {
 
-  @Input({ required: true }) imageStyles: { [key: string]: string } = {};
+  @Input({ required: true }) imageStyles: imageStyleKey = {};
   @Input() image: string | null = null;
   @Input() imageCrop: ImageCrop = { x: 0, y: 0, scale: 1 };
   @Input({ required: true }) imageDimensions: ImageDimensions = { width: 0, height: 0 };
@@ -22,13 +22,12 @@ export class ImageEditedComponent {
   @Output() activatePanMode = new EventEmitter<void>();
   @Output() deactivatePanMode = new EventEmitter<void>();
 
-  getMergedStyles(): { [key: string]: string } {
+  getMergedStyles(): imageStyleKey {
     return {
       ...this.imageStyles,
       'transform': `scale(${this.imageCrop.scale}) rotate(${this.currentRotationAngle}deg)`,
       'transform-origin': 'center center'
     };
   }
-
 
 }

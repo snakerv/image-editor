@@ -23,3 +23,7 @@ export interface ImageDatas {
   data: string;
   name: string
 }
+
+export interface imageStyleKey {
+  [key: string]: string
+}
