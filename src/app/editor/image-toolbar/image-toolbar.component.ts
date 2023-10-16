@@ -9,7 +9,6 @@ import { ImageEditorService } from 'src/app/services/image.service';
   standalone: true,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './image-toolbar.component.html',
-  styleUrls: ['./image-toolbar.component.scss']
 })
 export class ImageToolbarComponent {
   @Input() image: string | null = null;

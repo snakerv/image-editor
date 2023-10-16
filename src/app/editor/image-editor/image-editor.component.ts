@@ -7,6 +7,7 @@ import { ImageEditorService } from 'src/app/services/image.service';
 import { ImageEditorStoreService } from 'src/app/custom-store/image-editor-store/image-editor-store.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { ImageEditedComponent } from '../image-edited/image-edited.component';
+import { ImageEditorState } from 'src/app/common/interfaces/image-editor.interfaces';
 
 @Component({
   selector: 'app-image-editor',
@@ -14,14 +15,17 @@ import { ImageEditedComponent } from '../image-edited/image-edited.component';
   imports: [CommonModule, ImageToolbarComponent, ImageUploadComponent, MatProgressSpinnerModule, ImageEditedComponent],
   providers: [ImageEditorService],
   templateUrl: './image-editor.component.html',
-  styleUrls: ['./image-editor.component.scss'],
 })
 export class ImageEditorComponent implements OnDestroy {
-  imageStyles: { [key: string]: string } = {};
-  image: string | null = null;
-  imageCrop = { x: 0, y: 0, scale: 1 };
-  currentRotationAngle = 0;
-  isMouseDown = false;
+  imageState: ImageEditorState = {
+    image: null,
+    isImageLoaded: false,
+    imageCrop: { x: 0, y: 0, scale: 1 },
+    imageStyles: {},
+    currentRotationAngle: 0,
+    isMouseDown: false,
+    appliedFilters: []
+  };
   imageDimensions: { width: number, height: number } = { width: 0, height: 0 };
   isLoading = signal(false);
   isEditing = false;
@@ -33,11 +37,7 @@ export class ImageEditorComponent implements OnDestroy {
     private store: ImageEditorStoreService
   ) {
     this.stateSubscription = this.store.state$.subscribe((state) => {
-      this.imageStyles = state.imageStyles;
-      this.image = state.image;
-      this.imageCrop = state.imageCrop;
-      this.currentRotationAngle = state.currentRotationAngle;
-      this.isMouseDown = state.isMouseDown;
+      this.imageState = state;
     });
   }
 
@@ -76,17 +76,17 @@ export class ImageEditorComponent implements OnDestroy {
   }
 
   panImage(event: MouseEvent) {
-    if (!this.isMouseDown || this.imageCrop.scale <= 1) {
+    if (!this.imageState.isMouseDown || this.imageState.imageCrop.scale <= 1) {
       return;
     }
-    if (this.imageCrop.scale <= 1) {
+    if (this.imageState.imageCrop.scale <= 1) {
       return;
     }
     const rect = (event.target as HTMLElement).getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
-    this.imageCrop.x = -1 * (x - rect.width / 2) * (this.imageCrop.scale - 1);
-    this.imageCrop.y = -1 * (y - rect.height / 2) * (this.imageCrop.scale - 1);
+    this.imageState.imageCrop.x = -1 * (x - rect.width / 2) * (this.imageState.imageCrop.scale - 1);
+    this.imageState.imageCrop.y = -1 * (y - rect.height / 2) * (this.imageState.imageCrop.scale - 1);
   }
 
   onBackClicked() {

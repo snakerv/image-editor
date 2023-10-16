@@ -18,3 +18,8 @@ export interface ImageEditorState {
   isMouseDown: boolean;
   appliedFilters: string[];
 }
+
+export interface ImageDatas {
+  data: string;
+  name: string
+}

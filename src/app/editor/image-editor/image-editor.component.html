@@ -13,11 +13,11 @@
     <h1 style="z-index: 1">Edit {{ imageName }}</h1>
     <div class="image-wrapper">
       <app-image-edited
-        [imageStyles]="imageStyles"
-        [image]="image"
-        [imageCrop]="imageCrop"
+        [imageStyles]="imageState.imageStyles"
+        [image]="imageState.image"
+        [imageCrop]="imageState.imageCrop"
         [imageDimensions]="imageDimensions"
-        [currentRotationAngle]="currentRotationAngle"
+        [currentRotationAngle]="imageState.currentRotationAngle"
         [imageName]="imageName"
         (panImage)="panImage($event)"
         (activatePanMode)="activatePanMode()"
@@ -25,11 +25,11 @@
       ></app-image-edited>
     </div>
     <app-image-toolbar
-      [image]="image"
-      [imageStyles]="imageStyles"
-      [imageCrop]="imageCrop"
+      [image]="imageState.image"
+      [imageStyles]="imageState.imageStyles"
+      [imageCrop]="imageState.imageCrop"
       [imageName]="imageName"
-      [currentRotationAngle]="currentRotationAngle"
+      [currentRotationAngle]="imageState.currentRotationAngle"
       (action)="performAction($event)"
       (backClicked)="onBackClicked()"
     ></app-image-toolbar>

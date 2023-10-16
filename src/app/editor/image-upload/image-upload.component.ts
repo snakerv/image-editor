@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { ImageDatas } from 'src/app/common/interfaces/image-editor.interfaces';
 
 @Component({
   selector: 'app-image-upload',
   standalone: true,
   imports: [CommonModule, MatButtonModule],
   templateUrl: './image-upload.component.html',
-  styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent {
 
-  @Output() imageUploaded = new EventEmitter<{ data: string; name: string }>();
+  @Output() imageUploaded = new EventEmitter<ImageDatas>();
 
   uploadImage(event: Event) {
     const input = event.target as HTMLInputElement;
